@@ -19,7 +19,7 @@ cape-on: §aYou activated the {name}-Cape!
 
 # Here you can set the UI's Title.
 
-UI-Title: §bUltraCapes Menu
+UI-Title: §bTGCapes Menu
 
 # Here you can set the Message under the UI's Title.
 
@@ -27,4 +27,4 @@ UI-Content: §f§l>> §r§fHere you can choose a Cape!
 
 # Only for Internal Use [Don't Change!]
 
-standard_capes: ["Blue_Creeper", "Enderman", "Energy", "Fire", "Red_Creeper", "Turtle", "Pickaxe", "Firework", "Iron_Golem"]
+standard_capes: ["Blue_Creeper", "Enderman", "Energy", "Fire", "Red_Creeper", "Turtle", "Pickaxe", "Firework", "Iron_Golem", "Black", "Blue", "Red", "Purple"]
