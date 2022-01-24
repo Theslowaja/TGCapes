@@ -1,0 +1,52 @@
+---
+name: TGCapes
+author: Theslowaja
+version: 1.0.0
+description: Wear Capes on your Pocketmine-MP Server!
+main: Theslowaja\TGCapes\Main
+api: 4.0.0
+extensions: [gd]
+
+commands:
+  cape:
+    description: Choose a Cape!
+    usage: /cape
+    permission: cape.cmd
+
+permissions:
+  cape.cmd:
+    default: op
+    description: "Allows to open the Cape UI"
+  Enderman.cape:
+    default: op
+    description: "Allows to open the Cape UI"
+  Energy.cape:
+    default: op
+    description: "Allows to open the Cape UI"
+  Fire.cape:
+    default: op
+    description: "Allows to open the Cape UI"
+  Firework.cape:
+    default: op
+    description: "Allows to open the Cape UI"
+  Pickaxe.cape:
+    default: op
+    description: "Allows to open the Cape UI"
+  Turtle.cape:
+    default: op
+    description: "Allows to open the Cape UI" 
+  Black.cape:
+    default: op
+    description: "Allows to open the Cape UI" 
+  Purple.cape:
+    default: op
+    description: "Allows to open the Cape UI" 
+  Blue.cape:
+    default: op
+    description: "Allows to open the Cape UI" 
+  Red.cape:
+    default: op
+    description: "Allows to open the Cape UI" 
+  
+
+...
