@@ -1,4 +1,4 @@
-# TGCrapes
+# TGCapes
 
 ![alt text](https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/3a/MINECON_2011_Cape.png/revision/latest/scale-to-width-down/200?cb=20200901084410)
 
