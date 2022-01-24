@@ -4,5 +4,5 @@ branches:
 - main
 projects:
   TGCapes:
-    path: ""
+    path: "cape.png"
 ...
