@@ -23,7 +23,7 @@ use pocketmine\utils\TextFormat;
 
  */
 
-class CapesCommand extends Command implements PluginIdentifiableCommand {
+class CapesCommand extends Command implements PluginOwned {
 
     /** @var Main $plugin */
 
