@@ -25,10 +25,6 @@ use pocketmine\utils\TextFormat;
 
 class CapesCommand extends Command implements PluginIdentifiableCommand {
 
-    /** @var Main $plugin */
-
-    protected $plugin;
-
     /**
 
      * CapesCommand constructor.
