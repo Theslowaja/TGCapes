@@ -10,7 +10,7 @@ use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use Theslowaja\TGCapes\libs\jojoe77777\FormAPI\SimpleForm;
-use Theslowaja\TGCapes\command\CapesCommand;
+use Theslowaja\TGCapes\commands\CapesCommand;
 
 class Main extends PluginBase implements Listener {
 
