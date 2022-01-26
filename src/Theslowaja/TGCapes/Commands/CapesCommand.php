@@ -4,7 +4,7 @@ namespace Theslowaja\TGCapes\Commands;
 
 use pocketmine\command\{CommandSender, Command};
 
-use pocketmine\command\PluginIdentifiableCommand;
+use pocketmine\command\PluginOwned;
 
 use pocketmine\Server;
 use pocketmine\player\Player;
@@ -25,6 +25,10 @@ use pocketmine\utils\TextFormat;
 
 class CapesCommand extends Command implements PluginIdentifiableCommand {
 
+    /** @var Main $plugin */
+
+    protected $plugin;
+    
     /**
 
      * CapesCommand constructor.
