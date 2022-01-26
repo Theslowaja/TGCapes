@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Theslowaja\TGCapes;
 
 use pocketmine\command\{Command, CommandSender};
@@ -12,6 +10,7 @@ use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use Theslowaja\TGCapes\libs\jojoe77777\FormAPI\SimpleForm;
+use Theslowaja\TGCapes\command\CapesCommand;
 
 class Main extends PluginBase implements Listener {
 
@@ -77,26 +76,6 @@ class Main extends PluginBase implements Listener {
         $player = $event->getPlayer();
 
         $this->skin[$player->getName()] = $player->getSkin();
-    }
-
-    public function onCommand(CommandSender $player, Command $command, string $label, array $args): bool {
-        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
-        $noperms = $cfg->get("no-permissions");
-        $ingame = $cfg->get("ingame");
-
-        if($command->getName() == "cape") {
-            if(!$player instanceof Player) {
-                $player->sendMessage($ingame);
-            } else {
-                if(!$player->hasPermission("cape.cmd")) {
-                    $player->sendMessage($noperms);
-                } else {
-                    $this->openCapesUI($player);
-                }
-            }
-        }
-        
-        return true;
     }
                             
     public function openCapesUI($player) {
