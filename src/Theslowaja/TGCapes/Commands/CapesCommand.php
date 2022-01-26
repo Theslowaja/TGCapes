@@ -4,7 +4,7 @@ namespace Theslowaja\TGCapes\Commands;
 
 use pocketmine\command\{CommandSender, Command};
 
-use pocketmine\command\PluginOwned;
+use pocketmine\plugin\PluginOwned;
 
 use pocketmine\Server;
 use pocketmine\player\Player;
