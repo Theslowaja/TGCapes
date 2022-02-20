@@ -40,15 +40,15 @@ Important!!! The Capes Size must be 64x32 Pixel. (Of the .png file)
 
 • Menu •
 
-<img src="https://github.com/Theslowaja/TGCapes/blob/main/resources/img/menu.png" alt="menu" width="50%">
+<img src="https://github.com/Theslowaja/image/blob/main/img/menu.png" alt="menu" width="50%">
 
 • List •
 
-<img src="https://github.com/Theslowaja/TGCapes/blob/main/resources/img/list.png" alt="list" width="50%">
+<img src="https://github.com/Theslowaja/image/blob/main/img/list.png" alt="list" width="50%">
 
 • Example •
 
-<img src="https://github.com/Theslowaja/TGCapes/blob/main/resources/img/example.png" alt="ex" width="50%">
+<img src="https://github.com/Theslowaja/image/blob/main/img/example.png" alt="ex" width="50%">
 
 # Permissions:
 
