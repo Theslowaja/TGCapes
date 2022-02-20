@@ -28,11 +28,11 @@ class Main extends PluginBase implements Listener {
         
         if(is_array($this->cfg->get("standard_capes"))) {
             foreach($this->cfg->get("standard_capes") as $cape){
-                $this->saveResource("$this->cfg.png");
+                $this->saveResource($this->cfg.".png");
             }
 
             $this->cfg->set("standard_capes", "done");
-            $this->$cfg->save();
+            $this->cfg->save();
         }
     }
 
