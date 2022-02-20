@@ -21,33 +21,33 @@ class Main extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveResource("config.yml");
 
-        $capes = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+        $pdata = new Config($this->getDataFolder() . "data.yml", Config::YAML);
         
-        if(is_array($capes->get("standard_capes"))) {
-            foreach($capes->get("standard_capes") as $cape){
-                $this->saveResource("$cape.png");
+        if(is_array($cfg->get("standard_capes"))) {
+            foreach($cfg->get("standard_capes") as $cape){
+                $this->saveResource("$cfg.png");
             }
 
-            $capes->set("standard_capes", "done");
-            $capes->save();
+            $cfg->set("standard_capes", "done");
+            $cfg->save();
         }
     }
 
     public function onJoin(PlayerJoinEvent $event) {
         $player = $event->getPlayer();
         $this->skin[$player->getName()] = $player->getSkin();
-        $playercape = new Config($this->getDataFolder() . "data.yml", Config::YAML);
         
-        if(file_exists($this->getDataFolder() . $playercape->get($player->getName()) . ".png")) {
+        if(file_exists($this->getDataFolder() . $pdata->get($player->getName()) . ".png")) {
             $oldSkin = $player->getSkin();
-            $capeData = $this->createCape($playercape->get($player->getName()));
+            $capeData = $this->createCape($pdata->get($player->getName()));
             $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
 
             $player->setSkin($setCape);
             $player->sendSkin();
         } else {
-            $playercape->remove($player->getName());
-            $playercape->save();
+            $pdata->remove($player->getName());
+            $pdata->save();
         }
     }
 
@@ -80,7 +80,6 @@ class Main extends PluginBase implements Listener {
     }
 
     public function onCommand(CommandSender $player, Command $command, string $label, array $args): bool {
-        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
         $noperms = $cfg->get("no-permissions");
         $ingame = $cfg->get("ingame");
 
@@ -100,7 +99,6 @@ class Main extends PluginBase implements Listener {
     }
                             
     public function openCapesUI($player) {
-        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
         $form = new SimpleForm(function(Player $player, $data = null) {
             $result = $data;
 
@@ -112,8 +110,6 @@ class Main extends PluginBase implements Listener {
                 case 0:
                     break;
                 case 1:
-                    $pdata = new Config($this->getDataFolder() . "data.yml", Config::YAML);
-                    $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
                     $oldSkin = $player->getSkin();
                     $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), "", $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
                     
@@ -142,7 +138,6 @@ class Main extends PluginBase implements Listener {
     }
                         
     public function openCapeListUI($player) {
-        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
         $form = new SimpleForm(function(Player $player, $data = null) {
             $result = $data;
 
@@ -151,8 +146,6 @@ class Main extends PluginBase implements Listener {
             }
 
             $cape = $data;
-            $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
-            $pdata = new Config($this->getDataFolder() . "data.yml", Config::YAML);
             $noperms = $cfg->get("no-permissions");
             
             if(!file_exists($this->getDataFolder() . $data . ".png")) {
@@ -180,11 +173,9 @@ class Main extends PluginBase implements Listener {
 
         $form->setTitle($cfg->get("UI-Title"));
         $form->setContent($cfg->get("UI-Content"));
-        
         foreach($this->getCapes() as $capes) {
             $form->addButton("$capes", -1, "", $capes);
         }
-        
         $form->sendToPlayer($player);
     }
                         
