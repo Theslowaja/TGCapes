@@ -23,16 +23,16 @@ class Main extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveResource("config.yml");
 
-        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
-        $pdata = new Config($this->getDataFolder() . "data.yml", Config::YAML);
+        $this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+        $this->pdata = new Config($this->getDataFolder() . "data.yml", Config::YAML);
         
-        if(is_array($cfg->get("standard_capes"))) {
-            foreach($cfg->get("standard_capes") as $cape){
-                $this->saveResource("$cfg.png");
+        if(is_array($this->cfg->get("standard_capes"))) {
+            foreach($this->cfg->get("standard_capes") as $cape){
+                $this->saveResource("$this->cfg.png");
             }
 
-            $cfg->set("standard_capes", "done");
-            $cfg->save();
+            $this->cfg->set("standard_capes", "done");
+            $this->$cfg->save();
         }
     }
 
@@ -40,16 +40,16 @@ class Main extends PluginBase implements Listener {
         $player = $event->getPlayer();
         $this->skin[$player->getName()] = $player->getSkin();
         
-        if(file_exists($this->getDataFolder() . $pdata->get($player->getName()) . ".png")) {
+        if(file_exists($this->getDataFolder() . $this->pdata->get($player->getName()) . ".png")) {
             $oldSkin = $player->getSkin();
-            $capeData = $this->createCape($pdata->get($player->getName()));
+            $capeData = $this->createCape($this->pdata->get($player->getName()));
             $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
 
             $player->setSkin($setCape);
             $player->sendSkin();
         } else {
-            $pdata->remove($player->getName());
-            $pdata->save();
+            $this->pdata->remove($player->getName());
+            $this->pdata->save();
         }
     }
 
@@ -82,8 +82,8 @@ class Main extends PluginBase implements Listener {
     }
 
     public function onCommand(CommandSender $player, Command $command, string $label, array $args): bool {
-        $noperms = $cfg->get("no-permissions");
-        $ingame = $cfg->get("ingame");
+        $noperms = $this->cfg->get("no-permissions");
+        $ingame = $this->cfg->get("ingame");
 
         if($command->getName() == "cape") {
             if(!$player instanceof Player) {
@@ -118,12 +118,12 @@ class Main extends PluginBase implements Listener {
                     $player->setSkin($setCape);
                     $player->sendSkin();
 
-                    if($pdata->get($player->getName()) !== null){
-                        $pdata->remove($player->getName());
-                        $pdata->save();
+                    if($this->pdata->get($player->getName()) !== null){
+                        $this->pdata->remove($player->getName());
+                        $this->pdata->save();
                     }
                     
-                    $player->sendMessage($cfg->get("skin-resetted"));
+                    $player->sendMessage($this->cfg->get("skin-resetted"));
                     break;
                 case 2:
                     $this->openCapeListUI($player);
@@ -131,8 +131,8 @@ class Main extends PluginBase implements Listener {
             }
         });
 
-        $form->setTitle($cfg->get("UI-Title"));
-        $form->setContent($cfg->get("UI-Content"));
+        $form->setTitle($this->cfg->get("UI-Title"));
+        $form->setContent($this->cfg->get("UI-Content"));
         $form->addButton("§4Abort", 0);
         $form->addButton("§0Remove your Cape", 1);
         $form->addButton("§eChoose a Cape", 2);
@@ -148,7 +148,7 @@ class Main extends PluginBase implements Listener {
             }
 
             $cape = $data;
-            $noperms = $cfg->get("no-permissions");
+            $noperms = $this->cfg->get("no-permissions");
             
             if(!file_exists($this->getDataFolder() . $data . ".png")) {
                 $player->sendMessage("The choosen Skin is not available!");
@@ -163,18 +163,18 @@ class Main extends PluginBase implements Listener {
                     $player->setSkin($setCape);
                     $player->sendSkin();
 
-                    $msg = $cfg->get("cape-on");
+                    $msg = $this->cfg->get("cape-on");
                     $msg = str_replace("{name}", $cape, $msg);
 
                     $player->sendMessage($msg);
-                    $pdata->set($player->getName(), $cape);
-                    $pdata->save();
+                    $this->pdata->set($player->getName(), $cape);
+                    $this->pdata->save();
                 }
             }
         });
 
-        $form->setTitle($cfg->get("UI-Title"));
-        $form->setContent($cfg->get("UI-Content"));
+        $form->setTitle($this->cfg->get("UI-Title"));
+        $form->setContent($this->cfg->get("UI-Content"));
         foreach($this->getCapes() as $capes) {
             $form->addButton("$capes", -1, "", $capes);
         }
