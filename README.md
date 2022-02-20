@@ -36,6 +36,17 @@ Important!!! The Capes Size must be 64x32 Pixel. (Of the .png file)
 
 • Add a permission for using all Capes
 
+# ScreenShoot
+
+• Menu •
+<img src="https://github.com/Theslowaja/TGCapes/blob/main/resources/img/menu.png" alt="menu" width="50%">
+
+• List •
+<img src="https://github.com/Theslowaja/TGCapes/blob/main/resources/img/list.png" alt="list" width="50%">
+
+• Example •
+<img src="https://github.com/Theslowaja/TGCapes/blob/main/resources/img/example.png" alt="ex" width="50%">
+
 # Permissions:
 
 To open the Main CapeUI you need the Permission cape.cmd.
