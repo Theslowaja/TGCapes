@@ -16,6 +16,7 @@ use Theslowaja\TGCapes\libs\jojoe77777\FormAPI\SimpleForm;
 class Main extends PluginBase implements Listener {
 
     protected $skin = [];
+    private Config $config;
     
     public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
