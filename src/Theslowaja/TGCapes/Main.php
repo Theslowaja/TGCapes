@@ -12,6 +12,7 @@ use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use Theslowaja\TGCapes\libs\jojoe77777\FormAPI\SimpleForm;
+use pocketmine\permission\DefaultPermissions;
 
 class Main extends PluginBase implements Listener {
 
@@ -153,7 +154,7 @@ class Main extends PluginBase implements Listener {
             if(!file_exists($this->getDataFolder() . $data . ".png")) {
                 $player->sendMessage("The choosen Skin is not available!");
             } else {
-                if(!$player->hasPermission("$cape.cape")) {
+                if(!$player->hasPermission("$cape.cape") && $player->hasPermission(DefaultPermissions::ROOT_OPERATOR)) {
                     $player->sendMessage($noperms);
                 } else {
                     $oldSkin = $player->getSkin();
