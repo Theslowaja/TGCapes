@@ -155,6 +155,20 @@ class Main extends PluginBase implements Listener {
                 $player->sendMessage("The choosen Skin is not available!");
             } else {
                 if($player->hasPermission("$cape.cape")) {
+                    $oldSkin = $player->getSkin();
+                    $capeData = $this->createCape($cape);
+                    $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
+
+                    $player->setSkin($setCape);
+                    $player->sendSkin();
+
+                    $msg = $this->cfg->get("cape-on");
+                    $msg = str_replace("{name}", $cape, $msg);
+
+                    $player->sendMessage($msg);
+                    $this->pdata->set($player->getName(), $cape);
+                    $this->pdata->save();
+                } else {
                     if($player->hasPermission(DefaultPermissions::ROOT_OPERATOR)){
                         $oldSkin = $player->getSkin();
                         $capeData = $this->createCape($cape);
@@ -169,9 +183,9 @@ class Main extends PluginBase implements Listener {
                         $player->sendMessage($msg);
                         $this->pdata->set($player->getName(), $cape);
                         $this->pdata->save();
+                    }else{
+                        $player->sendMessage($noperms);
                     }
-                } else {
-                    $player->sendMessage($noperms);
                 }
             }
         });
