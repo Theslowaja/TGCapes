@@ -154,20 +154,22 @@ class Main extends PluginBase implements Listener {
             if(!file_exists($this->getDataFolder() . $data . ".png")) {
                 $player->sendMessage("The choosen Skin is not available!");
             } else {
-                if($player->hasPermission("$cape.cape") && $player->hasPermission(DefaultPermissions::ROOT_OPERATOR)) {
-                    $oldSkin = $player->getSkin();
-                    $capeData = $this->createCape($cape);
-                    $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
+                if($player->hasPermission("$cape.cape")) {
+                    if($player->hasPermission(DefaultPermissions::ROOT_OPERATOR)){
+                        $oldSkin = $player->getSkin();
+                        $capeData = $this->createCape($cape);
+                        $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
 
-                    $player->setSkin($setCape);
-                    $player->sendSkin();
+                        $player->setSkin($setCape);
+                        $player->sendSkin();
 
-                    $msg = $this->cfg->get("cape-on");
-                    $msg = str_replace("{name}", $cape, $msg);
+                        $msg = $this->cfg->get("cape-on");
+                        $msg = str_replace("{name}", $cape, $msg);
 
-                    $player->sendMessage($msg);
-                    $this->pdata->set($player->getName(), $cape);
-                    $this->pdata->save();
+                        $player->sendMessage($msg);
+                        $this->pdata->set($player->getName(), $cape);
+                        $this->pdata->save();
+                    }
                 } else {
                     $player->sendMessage($noperms);
                 }
