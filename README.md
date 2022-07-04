@@ -64,6 +64,8 @@ For example: firework.cape or energy.cape
 
 • If you have problems open an Issue.
 
+add new cape
+
 Have fun with this plugin on your Server!
 
 Credits: https://github.com/SuperStulle007/UltraCapes
