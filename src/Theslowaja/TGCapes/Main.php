@@ -148,7 +148,7 @@ class Main extends PluginBase implements Listener {
                 return true;
             }
 
-            $cape = $data;
+            $cape = str_replace(" ", "_", $data);
             $noperms = $this->cfg->get("no-permissions");
             
             if(!file_exists($this->getDataFolder() . $data . ".png")) {
