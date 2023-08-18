@@ -26,15 +26,15 @@ class Main extends PluginBase implements Listener {
 
         $this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
         $this->pdata = new Config($this->getDataFolder() . "data.yml", Config::YAML);
-        
+
         if(is_array($this->cfg->get("standard_capes"))) {
             foreach($this->cfg->get("standard_capes") as $cape){
                 $this->saveResource("$cape.png");
             }
-
             $this->cfg->set("standard_capes", "done");
             $this->cfg->save();
         }
+
     }
 
     public function onJoin(PlayerJoinEvent $event) {
@@ -70,8 +70,6 @@ class Main extends PluginBase implements Listener {
                 $bytes .= chr($r) . chr($g) . chr($b) . chr($a);
             }
         }
-
-        @imagedestroy($img);
 
         return $bytes;
     }
@@ -148,13 +146,14 @@ class Main extends PluginBase implements Listener {
                 return true;
             }
 
-            $cape = str_replace(" ", "_", $data);
+            $capeperm = str_replace(" ", "_", $data);
+            $cape = $data;
             $noperms = $this->cfg->get("no-permissions");
             
             if(!file_exists($this->getDataFolder() . $data . ".png")) {
                 $player->sendMessage("The choosen Skin is not available!");
             } else {
-                if($player->hasPermission("$cape.cape")) {
+                if($player->hasPermission("$capeperm.cape")) {
                     $oldSkin = $player->getSkin();
                     $capeData = $this->createCape($cape);
                     $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
