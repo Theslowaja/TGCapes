@@ -11,10 +11,10 @@ commands:
   cape:
     description: Choose a Cape!
     usage: /cape
-    permission: cape.cmd
+    permission: tgcape.cmd
 
 permissions:
-  cape.cmd:
+  tgcape.cmd:
     default: true
     description: "Allows to open the Cape UI"
     
