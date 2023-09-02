@@ -88,7 +88,7 @@ class Main extends PluginBase implements Listener {
             if(!$player instanceof Player) {
                 $player->sendMessage($ingame);
             } else {
-                if(!$player->hasPermission("cape.cmd")) {
+                if(!$player->hasPermission("tgcape.cmd")) {
                     $player->sendMessage($noperms);
                 } else {
                     $this->openCapesUI($player);
